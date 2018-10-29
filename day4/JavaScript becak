@@ -1,10 +1,10 @@
 var speed = 20
-var passangers = 4
+var passengers = 4
 
-if(passangers > 2) {
-  speed -= 5
-} else if(passangers === 4) {
+if(passengers === 4) {
   speed -= 7
+} else if(passengers > 2) {
+  speed -= 5
 } else {
   speed -= 2
 }

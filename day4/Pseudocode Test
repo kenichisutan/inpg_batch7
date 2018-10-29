@@ -1,0 +1,11 @@
+STORE "Base Speed" to 20
+STORE "Passengers" to any amount
+
+IF "Passengers" > 2
+  CALCULATE ("Base Speed" - 5)
+ELSE IF "Passengers" > 4
+  CALCULATE ("Base Speed" - 7)
+ELSE
+  CALCULATE ("Base Speed" - 2)
+STORE "Speed" to the result of the calculation
+DISPLAY ("Speed" km/jam)

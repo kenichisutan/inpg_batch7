@@ -1,0 +1,10 @@
+STORE "Speed" to 20
+STORE "Passengers" to any amount
+
+IF "Passengers" > 2
+  CALCULATE ("Speed" - 5)
+ELSE IF "Passengers" > 4
+  CALCULATE ("Speed" - 7)
+ELSE
+  CALCULATE ("Speed" - 2)
+DISPLAY ("Speed")

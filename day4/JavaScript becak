@@ -1,0 +1,12 @@
+var speed = 20
+var passangers = 4
+
+if(passangers > 2) {
+  speed -= 5
+} else if(passangers === 4) {
+  speed -= 7
+} else {
+  speed -= 2
+}
+
+console.log(speed)

@@ -1,3 +1,5 @@
+Becak memiliki kecepatan 20km/jam, jika membawa 4 penumpang maka kecepatan berkurang 7km/jam, bila membawa lebih dari 2 penumpang maka kecepatan berkurang 5km/jam, selainnya maka kecepatan akan berkurang 2km/jam.
+
 STORE "Speed" to 20
 STORE "Passengers" to any amount
 

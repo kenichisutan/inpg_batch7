@@ -7,4 +7,5 @@ ELSE IF "Passengers" > 4
   CALCULATE ("Speed" - 7)
 ELSE
   CALCULATE ("Speed" - 2)
+
 DISPLAY ("Speed")

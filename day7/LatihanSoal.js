@@ -4,22 +4,20 @@
 //Juice memiliki harga 50000, Anggur memiliki harga 300000.//
 
 var name = "Gana"
-var age = 20
-var money = 350000
+var age = 17
+var money = 400000
 
 if(name) {
+    var minum;
     if(age >= 17) {
-        var minum = 300000
-    }
-    if(age < 17) {
-        var minum = 50000
-    }
-    if (minum > money) {
+        minum = 300000
+    } if(age < 17) {
+        minum = 50000
+    } if (minum > money) {
         console.log("Uang tidak cukup. Anda harus pulang.");   
-    }
-    if (minum <= money) {
+    } if (minum <= money) {
         var sisa = money - minum
-        console.log("Anda bisa pesan minum. Sisa uang anda: Rp." + sisa)
+        console.log("Anda bisa pesan minum. Sisa uang anda: Rp. " + sisa)
     }
 } else {
   console.log("Anda tidak boleh masuk!")

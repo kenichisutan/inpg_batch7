@@ -1,3 +1,6 @@
+//Cetak 1-100//
+//Hanya cetak bilangan prima//
+
 var a = 1
 
 while(a < 100) {

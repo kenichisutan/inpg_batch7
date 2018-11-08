@@ -22,4 +22,4 @@ function nilaiTengah(a=1, b=11) {
     }
 }
 
-nilaiTengah(1, 17)
+nilaiTengah(33, 99)

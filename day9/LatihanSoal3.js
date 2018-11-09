@@ -5,7 +5,7 @@
 //Jika angka habis dibagi 15 cetak "KASKUS"//
 
 function kaskus(a = 1, b = []) {
-    while(a <= 30) {
+    for(a; a <= 30; a++) {
         if(a % 15 === 0) {
             b.push("KASKUS");
         }
@@ -18,7 +18,6 @@ function kaskus(a = 1, b = []) {
         else {
             b.push(a);
         }
-        a++;
     }
     return b
 }

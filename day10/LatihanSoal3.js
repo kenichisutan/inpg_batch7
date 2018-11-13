@@ -15,7 +15,7 @@ function numberProcessing(numberArr) {
 
     var x = 0
     var mean = 0
-        while(mean0.length > 0) {
+        while(mean0.length > x) {
             mean = mean + mean0[x]
         x++;
         }

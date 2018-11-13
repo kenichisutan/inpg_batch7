@@ -14,9 +14,9 @@ function numberProcessing(numberArr) {
     var max = max0[max0.length - 1]
 
     var x = 0
+    var mean = 0
         while(mean0.length > 0) {
-            var mean = 0
-            mean = mean0[x]
+            mean = mean + mean0[x]
         x++;
         }
     mean = mean / x

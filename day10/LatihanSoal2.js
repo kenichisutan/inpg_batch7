@@ -15,10 +15,20 @@ function targetTerdekat(arr) {
     }
     a = 0
     while(x === -1) {
-        if(arr[a] === 'x') {
+        if(arr[o + a] === 'x') {
             x = a
         }
+        else if(arr[o - a] === 'x') {
+            x = a
+        }
+        else if(a === arr.length * 2) {
+            x = "Blank"
+        }
         else a++
+    }
+
+    if(x === "Blank") {
+        return 0
     }
 
     if(x < o) {

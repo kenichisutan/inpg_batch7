@@ -4,27 +4,27 @@
 //Jika tidak ditemukan 'x' sama sekali, function akan me-return nilai 0.//
 
 function targetTerdekat(arr) {
-    var o = 0
-    var x = 0
+    var o = -1
+    var x = -1
     var a = 0
-    while(o === 0) {
+    while(o === -1) {
         if(arr[a] === 'o') {
             o = a
         }
-        a++
+        else a++
     }
     a = 0
-    while(x === 0) {
+    while(x === -1) {
         if(arr[a] === 'x') {
             x = a
         }
-        a++
+        else a++
     }
-    a = 0
+
     if(x < o) {
         return o - x
     }
-    if(o < x) {
+    else if(o < x) {
         return x - o
     }
 }

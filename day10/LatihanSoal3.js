@@ -13,9 +13,13 @@ function numberProcessing(numberArr) {
     max0.sort(function(a, b){return a - b})
     var max = max0[max0.length - 1]
 
-    if(mean0.length = 9) {
-        var mean = (mean0[0] + mean0[1] + mean0[2] + mean0[3] + mean0[4] + mean0[5] + mean0[6] + mean0[7] + mean0[8]) / 9
-    }
+    var x = 0
+    var mean = 0
+        while(mean0.length > x) {
+            mean = mean + mean0[x]
+        x++;
+        }
+    mean = mean / x
 
     var a = 0
     var odd = []

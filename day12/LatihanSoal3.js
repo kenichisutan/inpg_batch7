@@ -1,20 +1,36 @@
 var number = [ 10, 8, 1, 9, 1, 7, 29, 1, 0, 4, 1, 7 ]
 
 number.sort((a, b) => a-b)
-var x = 0
+
+console.log(number)
+
 var a = 0
 var b = a + 1
-var c
+var m = 0
+var n = 0
 
 function cieModus() {
-    while(x < number.length) {
-        if(number[a] === number[b]) {
-            c = number[a] 
+    while(a < number.length) {
+        n = 0
+        while(number[a] !== number[b]) {
+            a++
+            if(a > number.length) {
+                break
+            }
         }
-        a++
-        x++
+        while(number[a] === number[b]) {
+            console.log('INI A = ', a)
+            n++
+            a++
+            if(a > number.length) {
+                break
+            }
+        }
+        if(n > m) {
+            m = number[a - 1]
+        }
     }
-    return "Mean = " + c
+    return m
 }
- 
+
 console.log(cieModus())

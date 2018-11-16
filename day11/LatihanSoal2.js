@@ -19,7 +19,7 @@ function multiDimensi(a = 2, b = 5) {
         z++
     }
     
-    while(x < 2) {
+    while(x < a) {
         d[x].splice(0, 1, "first")
         d[x].pop()
         d[x].push("last")

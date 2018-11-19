@@ -2,8 +2,6 @@ var number = [ 10, 8, 1, 9, 1, 7, 29, 1, 0, 4, 1, 7 ]
 
 number.sort((a, b) => a-b)
 
-console.log(number)
-
 var a = 0
 var b = a + 1
 var m = 0
@@ -14,14 +12,15 @@ function cieModus() {
         n = 0
         while(number[a] !== number[b]) {
             a++
+            b++
             if(a > number.length) {
                 break
             }
         }
         while(number[a] === number[b]) {
-            console.log('INI A = ', a)
             n++
             a++
+            b++
             if(a > number.length) {
                 break
             }

@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        html {
+            background: url("/5134024=s1280=h960.jpeg") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
     <title>Application Form</title>
 </head>
 <body>
     <h1>This is the form page for applying at Nasi Goreng Website</h1>
-    <h5><a href=index.html>Press here to return to previous page.</h5>
+    <h5><a href=index.html>Press here to return to previous page.</a></h5>
     
-</body>
+    <form action="welcome.html" method="post"> 
+            <div> 
+                <label for="username">Username :</label> 
+                <input type="text" name="username"> 
+            <br> 
+                <label for="password">Password :</label> 
+                <input type="password" name="psw"> 
+            </div> 
+            <div> 
+                <label for="name">Full-Name :</label> 
+                <input type="text" id="name" name="user_name"> 
+            </div> 
+            <div> 
+                <label for="bday">Birthday :</label> 
+                <input type="date" name="bday"> 
+            </div> 
+            <div> 
+                <label for="gender">Gender :</label> 
+                <input id="male-radio" type="radio" name="gender" value="male"> 
+                <label for="design-radio">Male</label> 
+                <input id="female-radio" type="radio" name="gender" value="female"> 
+                <label for="design-radio">Female</label> 
+            </div> 
+            <div> 
+                <label for="mail">E-mail :</label> 
+                <input type="email" id="mail" name="user_mail"> 
+            </div> 
+            <div> 
+                <label for="number">Number :</label> 
+                <input type="number" id="number" name="user_number"> 
+            </div> 
+            <div> 
+                <label for="address">Address :</label> 
+                <textarea id="address" name="user_address"></textarea> 
+            </div> 
+            <div> 
+                <label for="appetite">How big of an appetite do you have:</label> 
+                <input id="small-checkbox" type="checkbox" name="skill" value="small"> 
+                <label for="small-checkbox">Just small</label> 
+                <input id="average-checkbox" type="checkbox" name="skill" value="average"> 
+                <label for="average-checkbox">Meh</label> 
+                <input id="large-checkbox" type="checkbox" name="skill" value="large"> 
+                <label for="large-checkbox">Big</label> 
+                <input id="xlarge-checkbox" type="checkbox" name="skill" value="xlarge"> 
+                <label for="xlarge-checkbox">REALLY big</label> 
+                <input id="absurd-checkbox" type="checkbox" name="skill" value="absurd"> 
+                <label for="absurd-checkbox">ABSURDLY LARGE</label> 
+            </div> 
+            <div class="button"> 
+                <button type="submit">Submit</button> 
+        </form> 
+    </body> 
 </html>

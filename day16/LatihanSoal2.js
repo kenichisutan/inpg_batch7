@@ -47,5 +47,3 @@ function convert (data) {
     
     
     //Diberikan sebuah function yang menerima parameter array multidimensi, buatlah sebuah program JavaScript untuk mengubah input menjadi format array of objects seperti di contoh.
-    
-    

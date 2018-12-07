@@ -16,10 +16,10 @@ function convert (data) {
         ad.push(ab)
 
         ab = {
-            id: [],
-            firstName: [],
-            lastName: [],
-            email: []
+            id: "",
+            firstName: "",
+            lastName: "",
+            email: ""
         }
     }
     return ad

@@ -10,8 +10,8 @@ function isPrime(number) {
     return prime
 }
 
-console.log(isPrime(3))
-console.log(isPrime(7))
-console.log(isPrime(6))
-console.log(isPrime(23))
-console.log(isPrime(33))
+console.log(isPrime(3));
+console.log(isPrime(7));
+console.log(isPrime(6));
+console.log(isPrime(23));
+console.log(isPrime(33));

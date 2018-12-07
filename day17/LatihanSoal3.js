@@ -69,4 +69,4 @@ function complexConversion (text) {
   // { name: 'Erwin', gender: 'male', age: '21' }
   
   console.log(complexConversion('city:Surabaya,province:East Java'));
-  // { city: 'Surabaya', province: 'East Java' }
+  // { city: 'Surabaya', province: 'East Java' }province

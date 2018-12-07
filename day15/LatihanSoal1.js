@@ -10,7 +10,7 @@ function threeStepsAB(text) {
             }
             if(text[aLoop1 + aLoop2] === "b") {
                 cond = true
-            }
+            }              
             aLoop2++    
         }
         aLoop1++

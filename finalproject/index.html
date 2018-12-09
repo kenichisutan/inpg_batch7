@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enter the Tower</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Unlock" rel="stylesheet">
+
+    <script src="js/manager.js"></script>
+    <script src="js/characters.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <p>Welcome to Enter the Tower! A game about ascending up a tower as high as you can.</p>
+        <h2>Choose your class!</h2>
+    </div>
+    <div class="interface">
+        <a href="#" onclick="gamemanager.selectedClass('Warrior')">
+            <img src="assets/Warrior.jpg">
+            <div>
+                <h3>Warrior</h3>
+                <p>Warriors have a high base damage and high health. Consider this if you want the simple class.</p>
+            </div>
+        </a>
+        <a href="#" onclick="gamemanager.selectedClass('Elementalist')">
+            <img src="assets/Elementalist.jpg">
+            <div>
+                <h3>Elementalist</h3>
+                <p>Elementalists have a low health but they are able to control and manipulate the elements to their desire.</p>
+            </div>
+        </a>
+        <a href="#" onclick="gamemanager.selectedClass('Assassin')">
+            <img src="assets/Assassin.jpg">
+            <div>
+                <h3>Assassin </h3>
+                <p>Assassins are the glass cannons of this game and can easily take out single target enemies but be careful when dealing with multiple enemies at once.</p>
+            </div>
+        </a>
+    </div>
+    <div class="actions">
+
+    </div>
+    <div class="enemy">
+
+    </div>
+</body>
+</html>

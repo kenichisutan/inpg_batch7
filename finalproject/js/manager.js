@@ -1,6 +1,56 @@
 var floorLevel = 1;
+var spawnlingAmount = 1;
 
 let gamemanager = {
+    playAudio: function() {
+        var audio = document.getElementById('audio');
+        if (audio.paused) {
+            audio.play();
+            $('#play').removeClass('glyphicon-play-circle')
+            $('#play').addClass('glyphicon-pause')
+        }else{
+            audio.pause();
+            audio.currentTime = 0
+            $('#play').addClass('glyphicon-play-circle')
+            $('#play').removeClass('glyphicon-pause')
+        }
+    },
+    rngEnemy: function() {
+        //Create enemy
+        let enemy99 = new Enemy("Spawnling", Math.round(50 * spawnlingAmount / 4), 0, Math.round(20 * spawnlingAmount / 4), Math.round(50 * spawnlingAmount / 4), Math.round(100 * spawnlingAmount / 4), 100)
+        let enemy00 = new Enemy("Goblin", 50, 0, 25, 75, 150, 100)
+        let enemy01 = new Enemy("Troll", 150, 0, 100, 15, 70, 70)
+        let enemy05 = new Enemy("Enchanted_Wall", 250, 10, 1000, 0, 1, 100)
+        let enemy07 = new Enemy("Necromancer", 200, 200, 10, 10, 50, 200)
+        let enemy10 = new Enemy("Corrupt", 500, 100, 250, 150, 400, 50)
+        //Randomly choosing enemy
+        let chooseRandomEnemy = Math.round(Math.random() * floorLevel);
+        if(chooseRandomEnemy === 0 || chooseRandomEnemy === 2 || chooseRandomEnemy === 4) {
+            enemy = enemy00;
+        }
+        if(chooseRandomEnemy === 1 || chooseRandomEnemy === 3 || chooseRandomEnemy === 9) {
+            enemy = enemy01;
+        }
+        if(chooseRandomEnemy === 5 || chooseRandomEnemy === 6) {
+            enemy = enemy05;
+        }
+        if(chooseRandomEnemy === 7 || chooseRandomEnemy === 8) {
+            enemy = enemy07;
+        }
+        if(chooseRandomEnemy === 10) {
+            enemy = enemy10;
+        }
+        if(chooseRandomEnemy > 10) {
+            spawnlingAmount++;
+            enemy = enemy99
+        }
+    },
+
+    underscoreToSpace: function(text) {
+        text = text.split("_");
+        return text.join(" ")
+    },
+
     selectedClass: function(classType) {
         if(classType === 'Warrior') {
             player = new Player(classType, 300, 0, 150, 25, 75, 100, "None");
@@ -22,7 +72,7 @@ let gamemanager = {
         let getInterface = document.querySelector(".interface");
         getInterface.innerHTML = '<img src="assets/' + 
         player.classType + '.jpg" class="img-avatar"><div><h3>' +
-        player.classType + '</h3><p class="health-player">Health : ' + player.health + '</p><p>Magic : '
+        player.classType + '</h3><p class="health-player">Health : ' + player.health + '</p><p class="magic-player">Magic : '
         + player.magic + '</p><p>Strength : '
         + player.strength + '</p><p>Agility : '
         + player.agility + '</p><p>Speed : ' + player.speed + '</p><p>Luck : '
@@ -33,35 +83,15 @@ let gamemanager = {
         let getActions = document.querySelector(".actions");
         //Class selected, waiting to enter the game
         getHeader.innerHTML = '<p>Enter the Tower</p>';
-        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="gamemanager.setFight()">ENTER THE TOWER!</a>';
+        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="gamemanager.setFight()">Enter</a>';
     },
     setFight: function() {
         let getHeader = document.querySelector(".header");
         let getActions = document.querySelector(".actions");
         let getEnemy = document.querySelector(".enemy");
-        //Create enemy
-        let enemy00 = new Enemy("Goblin", 50, 0, 25, 75, 150, 100)
-        let enemy01 = new Enemy("Troll", 150, 0, 100, 15, 70, 70)
-        let enemy02 = new Enemy("Enchanted Wall", 250, 10, 1000, 0, 1, 100)
-        let enemy03 = new Enemy("Necromacer", 200, 200, 10, 10, 50, 200)
-
-        //Randomly choosing enemy
-        let chooseRandomEnemy = Math.round(Math.random() * floorLevel);
-        if(chooseRandomEnemy === 0) {
-            enemy = enemy00;
-        }
-        if(chooseRandomEnemy === 1) {
-            enemy = enemy01;
-        }
-        if(chooseRandomEnemy === 2) {
-            enemy = enemy02;
-        }
-        if(chooseRandomEnemy === 3) {
-            enemy = enemy03;
-        }
-        if(chooseRandomEnemy === 4) {
-            enemy = enemy04;
-        }
+        
+        this.rngEnemy()
+        
         getHeader.innerHTML = '<p>Floor ' + floorLevel + '</p>';
         getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.initiateFight()">Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateSpecial()">Special Attack</a>';
         getEnemy.innerHTML = '<img src="assets/' + 
@@ -73,7 +103,7 @@ let gamemanager = {
     },
     ascendBtn: function() {
         let getActions = document.querySelector(".actions");
-        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.ascendFloor()">Next Floor</a>';
+        getActions.innerHTML = '<a classTypehref="#" class="btn-prefight" onclick="gamemanager.ascendFloor()">Next Floor</a>';
     },
     ascendFloor: function() {
         floorLevel++;

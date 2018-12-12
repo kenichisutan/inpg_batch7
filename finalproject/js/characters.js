@@ -2,9 +2,10 @@
 var player;
 
 function Player(classType, health, magic, strength, agility, speed, luck, special) {
-    this.classType = classType;
+    this.classType = gamemanager.underscoreToSpace(classType);
     this.health = health;
-    this.magic = magic + ", Special: " + special;
+    this.magic = magic;
+    this.special = special;
     this.strength = strength;
     this.agility = agility;
     this.speed = speed;
@@ -12,10 +13,14 @@ function Player(classType, health, magic, strength, agility, speed, luck, specia
 }
 
 let PlayerMoves = {
+    updateHealth: function() {
+        getEnemyHealth.innerHTML = "Health: " + enemy.health;
+        getPlayerHealth.innerHTML = "Health: " + player.health;
+    },
     playerAttack: function() {
         //Calculate how much damage the player deals
         let calcBaseDamage = Math.floor((player.strength + player.agility) / 3);
-        let offsetDamage = Math.floor(Math.random() * player.luck / 100);
+        let offsetDamage = Math.floor(Math.random() * player.luck / 10);
         let calcOutputDamage = calcBaseDamage + offsetDamage;
 
         let numberOfHits = Math.floor(player.agility / 100 * player.luck / 100 * Math.random())
@@ -28,7 +33,7 @@ let PlayerMoves = {
     enemyAttack: function() {
         //Calculate how much damage the enemy deals
         let calcBaseDamage = Math.floor((enemy.strength + enemy.agility) / 3);
-        let offsetDamage = Math.floor(Math.random() * enemy.luck / 100);
+        let offsetDamage = Math.floor(Math.random() * enemy.luck / 10);
         let calcOutputDamage = calcBaseDamage + offsetDamage;
 
         let numberOfHits = Math.floor(enemy.agility / 100 * enemy.luck / 100 * Math.random())
@@ -37,9 +42,6 @@ let PlayerMoves = {
         }
         let attackValues = [calcOutputDamage, numberOfHits];
         return attackValues;
-    },
-    playerSpell: function() {
-
     },
     initiateFight: function() {
         let getPlayerHealth = document.querySelector(".health-player");
@@ -68,14 +70,13 @@ let PlayerMoves = {
                 let enemyAttackValues = PlayerMoves.enemyAttack();
                 let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                 player.health = player.health - totalEnemyDamage;
-                alert(enemy.enemyType + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
+                alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                 if(player.health <= 0) {
                     alert("The tower has overwhelmed you. Refresh the browser to start over.")
                     getPlayerHealth.innerHTML = "Health: 0";
                     getEnemyHealth.innerHTML = "Health: " + enemy.health;
                 } else {
-                    getPlayerHealth.innerHTML = "Health: " + player.health;
-                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                    PlayerMoves.updateHealth()
                 }
             }
         } else {
@@ -83,7 +84,7 @@ let PlayerMoves = {
             let enemyAttackValues = PlayerMoves.enemyAttack();
             let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
             player.health = player.health - totalEnemyDamage;
-            alert(enemy.enemyType + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
+            alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
             if(player.health <= 0) {
                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
                 getPlayerHealth.innerHTML = "Health: 0";
@@ -101,8 +102,7 @@ let PlayerMoves = {
                     gamemanager.ascendBtn();
                 } else {
                     getEnemyHealth.innerHTML = "Health: " + enemy.health;
-                    getPlayerHealth.innerHTML = "Health: " + player.health;
-                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                    PlayerMoves.updateHealth()
                 }
             }
         }
@@ -110,42 +110,63 @@ let PlayerMoves = {
     initiateSpecial: function() {
         let getPlayerHealth = document.querySelector(".health-player");
         let getEnemyHealth = document.querySelector(".health-enemy");
+        let getPlayerMagic = document.querySelector(".magic-player");
         //Determine who attacks first
         let getPlayerSpeed = player.speed
         let getEnemySpeed = enemy.speed
 
         //Player First
-        if(player.special === "none") {
-            alert("No special ability!")
+        //Flamethrower obj
+        let flamethrower = {
+            damage: 50 + Math.floor(Math.random() * 100),
+            dot: 9 + Math.floor(Math.random() * 2),
+            time: Math.floor(Math.random() * 2) + 1,
+            cost: 100
+        }
+        //Crossbow obj
+        let crossbow = {
+            damage: 100 + Math.floor(Math.random() * 500),
+            cost: 50
+        }
+        if(player.special === "None") {
+            alert("No special ability!");
+        }
+        if(player.magic <= 0) {
+            alert("Not enough magica!")
         }
         if(getPlayerSpeed >= getEnemySpeed) {
+            //Flamethrower
+            //Player Attack
             if(player.special === "Flamethrower") {
-                let flamethrowerDamage = 50 + Math.floor(Math.random() * 100)
-                let flamethrowerDOT = 9 + Math.floor(Math.random() * 2)
-                let flamethrowerDOTTime = Math.floor(Math.random() * 2) + 1
-                let flamethrowerCost = 100
                 alert("You spent 100 magic to cast Flamethrower!")
-                alert("You dealt " + flamethrowerDamage + " damage to the " + enemyType + " and left him burning for " + flamethrowerDOTTime + " periods")
-                enemy.health = enemy.health - flamethrowerDamage
+                player.magic = Number(player.magic) - Number(flamethrower.cost);
+                getPlayerMagic.innerHTML = "Magic: " + player.magic
+                alert("You dealt " + flamethrower.damage + " damage to the " + enemy.enemyType + " and left him burning for " + flamethrower.time + " periods")
+                enemy.health = enemy.health - flamethrower.damage
                 if(enemy.health <= 0) {                    
                     alert(enemy.enemyType + " has been killed!")
                     getPlayerHealth.innerHTML = "Health: " + player.health;
                     getEnemyHealth.innerHTML = "Health: 0";
                     gamemanager.ascendBtn();
                 }
-                for(let time = 0; time < flamethrowerDOTTime; time++) {
-                    alert("The " + enemyType + " was burnt for " + flamethrowerDOT + "damage")
-                    enemy.health = enemy.health - flamethrowerDOT
-                    if(enemy.health <= 0) {
-                        alert(enemy.enemyType + " has been killed!")
-                        getPlayerHealth.innerHTML = "Health: " + player.health;
-                        getEnemyHealth.innerHTML = "Health: 0";
-                        gamemanager.ascendBtn();
+                if(enemy.health > 0) {
+                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                    for(let dottime = 0; dottime < Number(flamethrower.time); dottime++) {
+                        alert("The " + enemy.enemyType + " was burnt for " + flamethrower.dot + " damage")
+                        enemy.health = enemy.health - flamethrower.dot
+                        if(enemy.health <= 0) {
+                            alert(enemy.enemyType + " has been killed!")
+                            getPlayerHealth.innerHTML = "Health: " + player.health;
+                            getEnemyHealth.innerHTML = "Health: 0";
+                            gamemanager.ascendBtn();
+                            break;
+                        }else {
+                            PlayerMoves.updateHealth()
+                        }
                     }
                 }
                 if(enemy.health > 0) {
-                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
-                    getPlayerHealth.innerHTML = "Health: " + player.health;
+                    PlayerMoves.updateHealth()
                 }
                 //enemy attacks back
                 let enemyAttackValues = PlayerMoves.enemyAttack();
@@ -157,24 +178,23 @@ let PlayerMoves = {
                     getPlayerHealth.innerHTML = "Health: 0";
                     getEnemyHealth.innerHTML = "Health: " + enemy.health;
                 } else {
-                    getPlayerHealth.innerHTML = "Health: " + player.health;
-                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                    PlayerMoves.updateHealth()
                 }
             }
             if(player.special === "Crossbow") {
-                let crossbowDamage = 100 + Math.floor(Math.random() * 500)
-                let crossbowCost = 50
                 alert("You spent 50 magic to cast Crossbow!")
-                alert("You dealt " + crossbowDamage + " amount of damage to the" + enemy.enemyType + "!")
-                enemy.health = enemy.health - crossbowDamage
+                player.magic = Number(player.magic) - Number(crossbow.cost)
+                getPlayerMagic.innerHTML = "Magic: " + player.magic
+                alert("You dealt " + crossbow.damage + " amount of damage to the " + enemy.enemyType + "!")
+                enemy.health = enemy.health - crossbow.damage
+                
                 if(enemy.health <= 0) {
                     alert(enemy.enemyType + " has been killed!")
                     getPlayerHealth.innerHTML = "Health: " + player.health;
                     getEnemyHealth.innerHTML = "Health: 0";
                     gamemanager.ascendBtn();
                 } else {
-                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
-                    getPlayerHealth.innerHTML = "Health: " + player.health;
+                    PlayerMoves.updateHealth()
                     //enemy attacks back
                     let enemyAttackValues = PlayerMoves.enemyAttack();
                     let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
@@ -195,7 +215,7 @@ let PlayerMoves = {
             let enemyAttackValues = PlayerMoves.enemyAttack();
             let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
             player.health = player.health - totalEnemyDamage;
-            alert(enemy.enemyType + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
+            alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
             if(player.health <= 0) {
                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
                 getPlayerHealth.innerHTML = "Health: 0";
@@ -204,36 +224,41 @@ let PlayerMoves = {
                 getPlayerHealth.innerHTML = "Health: " + player.health;
                 getEnemyHealth.innerHTML = "Health: " + enemy.health;
                 if(player.special === "Flamethrower") {
-                    let flamethrowerDamage = 50 + Math.floor(Math.random() * 100)
-                    let flamethrowerDOT = 9 + Math.floor(Math.random() * 2)
-                    let flamethrowerDOTTime = Math.floor(Math.random() * 2) + 1
-                    let flamethrowerCost = 100
                     alert("You spent 100 magic to cast Flamethrower!")
-                    alert("You dealt " + flamethrowerDamage + " damage to the " + enemyType + " and left him burning for " + flamethrowerDOTTime + " periods")
-                    enemy.health = enemy.health - flamethrowerDamage
+                    player.magic = Number(player.magic) - Number(flamethrower.cost)
+                    getPlayerMagic.innerHTML = "Magic: " + player.magic
+                    alert("You dealt " + flamethrower.damage + " damage to the " + enemy.enemyType + " and left him burning for " + flamethrower.time + " periods")
+                    enemy.health = enemy.health - flamethrower.damage
                     if(enemy.health <= 0) {                    
                         alert(enemy.enemyType + " has been killed!")
                         getPlayerHealth.innerHTML = "Health: " + player.health;
                         getEnemyHealth.innerHTML = "Health: 0";
                         gamemanager.ascendBtn();
                     }
-                    for(let time = 0; time < flamethrowerDOTTime; time++) {
-                        alert("The " + enemyType + " was burnt for " + flamethrowerDOT + "damage")
-                        enemy.health = enemy.health - flamethrowerDOT
-                        if(enemy.health <= 0) {
-                            alert(enemy.enemyType + " has been killed!")
-                            getPlayerHealth.innerHTML = "Health: " + player.health;
-                            getEnemyHealth.innerHTML = "Health: 0";
-                            gamemanager.ascendBtn();
+                    getEnemyHealth.innerHTML = "Health: " + enemy.health
+                    if(enemy.health > 0) {
+                        getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                        for(let dottime = 0; dottime < Number(flamethrower.time); dottime++) {
+                            alert("The " + enemy.enemyType + " was burnt for " + flamethrower.dot + " damage")
+                            enemy.health = enemy.health - flamethrower.dot
+                            if(enemy.health <= 0) {
+                                alert(enemy.enemyType + " has been killed!")
+                                getPlayerHealth.innerHTML = "Health: " + player.health;
+                                getEnemyHealth.innerHTML = "Health: 0";
+                                gamemanager.ascendBtn();
+                                break;
+                            }else {
+                                getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                            }
                         }
                     }
-                }
+                }    
                 if(player.special === "Crossbow") {
-                    let crossbowDamage = 100 + Math.floor(Math.random() * 500)
-                    let crossbowCost = 50
                     alert("You spent 50 magic to cast Crossbow!")
-                    alert("You dealt " + crossbowDamage + " amount of damage to the" + enemy.enemyType + "!")
-                    enemy.health = enemy.health - crossbowDamage
+                    player.magic = Number(player.magic) - Number(crossbow.cost)                 
+                    getPlayerMagic.innerHTML = "Magic: " + player.magic
+                    alert("You dealt " + crossbow.damage + " amount of damage to the" + enemy.enemyType + "!")
+                    enemy.health = enemy.health - crossbow.damage
                     if(enemy.health <= 0) {
                         alert(enemy.enemyType + " has been killed!")
                         getPlayerHealth.innerHTML = "Health: " + player.health;

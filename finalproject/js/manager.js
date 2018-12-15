@@ -93,7 +93,7 @@ let gamemanager = {
         this.rngEnemy()
         
         getHeader.innerHTML = '<p>Floor ' + floorLevel + '</p>';
-        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.initiateFight()">Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateSpecial()">Special Attack</a>';
+        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.initiateFight()">Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateSpecial()">Special Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateDefend()">Defend</a>';
         getEnemy.innerHTML = '<img src="assets/' + 
         enemy.enemyType + '.jpg" enemy="img-avatar"><div><h3>' +
         enemy.enemyType + '</h3><p class="health-enemy">Health : ' + enemy.health + '</p><p>Magic : '

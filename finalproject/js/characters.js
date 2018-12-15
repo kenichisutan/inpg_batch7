@@ -271,6 +271,51 @@ let PlayerMoves = {
                 }
             }
         }
+    },
+    initiateDefend: function() {
+        let getPlayerHealth = document.querySelector(".health-player");
+        let getEnemyHealth = document.querySelector(".health-enemy");
+        let enemyAttackValues = PlayerMoves.enemyAttack();
+        let rngBlockChance = Math.round(Math.random() * 1);
+        if(rngBlockChance === 1) {
+            let parryDamage = enemyAttackValues[0] + Math.floor(Math.random() * 10) - Math.floor(Math.random() * enemyAttackValues[0])
+            for(let parryAmount = 1; parryAmount <= enemyAttackValues[1]; parryAmount++) {
+                if(parryAmount = 1) {
+                    alert("You successfully parried the " + enemy.enemyType + " and reflected " + parryDamage + " damage!")
+                } else {
+                    alert("You parried the " + enemy.enemyType + " again and reflected " + parryDamage + " damage!")
+                }
+                enemy.health = enemy.health - parryDamage;
+                if(enemy.health <= 0) {
+                    alert(enemy.enemyType + " has been killed!")
+                    getPlayerHealth.innerHTML = "Health: " + player.health;
+                    getEnemyHealth.innerHTML = "Health: 0";
+                    gamemanager.ascendBtn();
+                } else {
+                getEnemyHealth.innerHTML = "Health: " + enemy.health
+                }
+            }
+        } else {
+            let failedattackDamage = Number(enemyAttackValues[0]) - Math.floor(Math.random() * Number(enemyAttackValues[0]) - Math.floor(Math.random() * 10))
+            if(failedattackDamage <= 0) {
+                failedattackDamage = 1
+            }
+            for(let failedattackAmount = 1; failedattackAmount <= enemyAttackValues[1]; failedattackAmount++) {
+                if(failedattackAmount = 1) {
+                    alert("You failed to parry the " + enemy.enemyType + " and received " + failedattackDamage + " damage!")
+                } else {
+                    alert("You failed to parry the " + enemy.enemyType + " again and received " + failedattackDamage + " damage!")
+                }
+                player.health = player.health - failedattackDamage;
+                if(player.health <= 0) {
+                    alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                    getPlayerHealth.innerHTML = "Health: 0";
+                    getEnemyHealth.innerHTML = "Health: " + enemy.health;
+                } else {
+                    getPlayerHealth.innerHTML = "Health: " + player.health;
+                }
+            }
+        }
     }
 }
 

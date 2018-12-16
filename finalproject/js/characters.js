@@ -14,6 +14,8 @@ function Player(classType, health, magic, strength, agility, speed, luck, specia
 
 let PlayerMoves = {
     updateHealth: function() {
+        let getPlayerHealth = document.querySelector(".health-player");
+        let getEnemyHealth = document.querySelector(".health-enemy");
         getEnemyHealth.innerHTML = "Health: " + enemy.health;
         getPlayerHealth.innerHTML = "Health: " + player.health;
     },
@@ -130,8 +132,10 @@ let PlayerMoves = {
         }
         if(player.special === "None") {
             alert("No special ability!");
+        } else {
             if(player.magic <= 0) {
                 alert("Not enough magica!")
+            } else {
                 if(getPlayerSpeed >= getEnemySpeed) {
                     //Flamethrower
                     //Player Attack
@@ -170,7 +174,7 @@ let PlayerMoves = {
                         let enemyAttackValues = PlayerMoves.enemyAttack();
                         let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                         player.health = player.health - totalEnemyDamage;
-                        alert(enemy.enemyType + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
+                        alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                         if(player.health <= 0) {
                             alert("The tower has overwhelmed you. Refresh the browser to start over.")
                             getPlayerHealth.innerHTML = "Health: 0";

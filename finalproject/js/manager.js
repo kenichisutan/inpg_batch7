@@ -2,19 +2,6 @@ var floorLevel = 1;
 var spawnlingAmount = 1;
 
 let gamemanager = {
-    playAudio: function() {
-        var audio = document.getElementById('audio');
-        if (audio.paused) {
-            audio.play();
-            $('#play').removeClass('glyphicon-play-circle')
-            $('#play').addClass('glyphicon-pause')
-        }else{
-            audio.pause();
-            audio.currentTime = 0
-            $('#play').addClass('glyphicon-play-circle')
-            $('#play').removeClass('glyphicon-pause')
-        }
-    },
     rngEnemy: function() {
         //Create enemy
         let enemy99 = new Enemy("Spawnling", Math.round(50 * spawnlingAmount / 4), 0, Math.round(20 * spawnlingAmount / 4), Math.round(50 * spawnlingAmount / 4), Math.round(100 * spawnlingAmount / 4), 100)

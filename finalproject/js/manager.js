@@ -34,12 +34,12 @@ let gamemanager = {
     },
     rngItem: function() {
         //Create item
-        let item00 = new Item("Ring of Health", 100, 0, 10, 0, 0, 0);
-        let item01 = new Item("Boots of Speed", 0, 0, 0, 10, 100, 0);
-        let item02 = new Item("Magic talisman", 0, 100, 0, 0, 0, 10);
-        let item03 = new Item("Band of Strength", 10, 0, 100, 0, 0, 0);
-        let item04 = new Item("Lightweight armor", 0, 0, 0, 100, 10, 0);
-        let item05 = new Item("Lucky coin", 0, 10, 0, 0, 0, 100);
+        let item00 = new Item("Ring of Health", 50, 0, 10, 0, 0, 0);
+        let item01 = new Item("Boots of Speed", 0, 0, 0, 10, 50, 0);
+        let item02 = new Item("Magic talisman", 0, 50, 0, 0, 0, 10);
+        let item03 = new Item("Band of Strength", 10, 0, 50, 0, 0, 0);
+        let item04 = new Item("Lightweight armor", 0, 0, 0, 50, 10, 0);
+        let item05 = new Item("Lucky coin", 0, 10, 0, 0, 0, 50);
 
         //Decide if an item will spawn
         let spawnRandomItem = Math.round(Math.random() * player.luck / 75);

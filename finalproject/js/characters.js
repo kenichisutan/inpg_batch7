@@ -334,3 +334,16 @@ function Enemy(enemyType, health, magic, strength, agility, speed, luck) {
     this.speed = speed;
     this.luck = luck;
 }
+
+//items
+let item;
+
+function Item(itemType, health, magic, strength, agility, speed, luck) {
+    this.itemType = itemType;
+    this.health = health;
+    this.magic = magic;
+    this.strength = strength;
+    this.agility = agility;
+    this.speed = speed;
+    this.luck = luck;
+}

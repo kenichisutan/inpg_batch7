@@ -1,4 +1,6 @@
+//Keeps track on how many floors the player went
 var floorLevel = 1;
+//Keeps track on how many spawnlings have spawned
 var spawnlingAmount = 1;
 
 let gamemanager = {
@@ -65,12 +67,14 @@ let gamemanager = {
                 item = item05;
             }
             let getInterface = document.querySelector(".interface");
+            //Update player values
             player.health = player.health + item.health;
             player.magic = player.magic + item.magic;
             player.agility = player.agility + item.agility;
             player.strength = player.strength + item.strength;
             player.speed = player.speed + item.speed;
             player.luck = player.luck + item.luck;
+            //Make updates visible to user
             getInterface.innerHTML = '<img src="assets/' + 
             player.classType + '.jpg" class="img-avatar"><div><h3>' +
             player.classType + '</h3><p class="health-player">Health : ' + player.health + '</p><p class="magic-player">Magic : '

@@ -2,19 +2,6 @@ var floorLevel = 1;
 var spawnlingAmount = 1;
 
 let gamemanager = {
-    playAudio: function() {
-        var audio = document.getElementById('audio');
-        if (audio.paused) {
-            audio.play();
-            $('#play').removeClass('glyphicon-play-circle')
-            $('#play').addClass('glyphicon-pause')
-        }else{
-            audio.pause();
-            audio.currentTime = 0
-            $('#play').addClass('glyphicon-play-circle')
-            $('#play').removeClass('glyphicon-pause')
-        }
-    },
     rngEnemy: function() {
         //Create enemy
         let enemy99 = new Enemy("Spawnling", Math.round(50 * spawnlingAmount / 4), 0, Math.round(20 * spawnlingAmount / 4), Math.round(50 * spawnlingAmount / 4), Math.round(100 * spawnlingAmount / 4), 100)
@@ -45,12 +32,59 @@ let gamemanager = {
             enemy = enemy99
         }
     },
+    rngItem: function() {
+        //Create item
+        let item00 = new Item("Ring of Health", 50, 0, 10, 0, 0, 0);
+        let item01 = new Item("Boots of Speed", 0, 0, 0, 10, 50, 0);
+        let item02 = new Item("Magic talisman", 0, 50, 0, 0, 0, 10);
+        let item03 = new Item("Band of Strength", 10, 0, 50, 0, 0, 0);
+        let item04 = new Item("Lightweight armor", 0, 0, 0, 50, 10, 0);
+        let item05 = new Item("Lucky coin", 0, 10, 0, 0, 0, 50);
 
+        //Decide if an item will spawn
+        let spawnRandomItem = Math.round(Math.random() * player.luck / 75);
+        if(spawnRandomItem >= 1) {
+            //Decide what item to spawn
+            let chooseRandomItem = Math.round(Math.random() * 5);
+            if(chooseRandomItem === 0) {
+                item = item00;
+            }
+            if(chooseRandomItem === 1) {
+                item = item01;
+            }
+            if(chooseRandomItem === 2) {
+                item = item02;
+            }
+            if(chooseRandomItem === 3) {
+                item = item03;
+            }
+            if(chooseRandomItem === 4) {
+                item = item04;
+            }
+            if(chooseRandomItem === 5) {
+                item = item05;
+            }
+            let getInterface = document.querySelector(".interface");
+            player.health = player.health + item.health;
+            player.magic = player.magic + item.magic;
+            player.agility = player.agility + item.agility;
+            player.strength = player.strength + item.strength;
+            player.speed = player.speed + item.speed;
+            player.luck = player.luck + item.luck;
+            getInterface.innerHTML = '<img src="assets/' + 
+            player.classType + '.jpg" class="img-avatar"><div><h3>' +
+            player.classType + '</h3><p class="health-player">Health : ' + player.health + '</p><p class="magic-player">Magic : '
+            + player.magic + '</p><p>Strength : '
+            + player.strength + '</p><p>Agility : '
+            + player.agility + '</p><p>Speed : ' + player.speed + '</p><p>Luck : '
+            + player.luck + '</p>';
+            alert("You received " + item.itemType + "!")
+        }
+    },
     underscoreToSpace: function(text) {
         text = text.split("_");
         return text.join(" ")
     },
-
     selectedClass: function(classType) {
         if(classType === 'Warrior') {
             player = new Player(classType, 300, 0, 150, 25, 75, 100, "None");
@@ -102,6 +136,8 @@ let gamemanager = {
         + enemy.luck + '</p>';
     },
     ascendBtn: function() {
+        gamemanager.rngItem()
+
         let getActions = document.querySelector(".actions");
         getActions.innerHTML = '<a classTypehref="#" class="btn-prefight" onclick="gamemanager.ascendFloor()">Next Floor</a>';
     },

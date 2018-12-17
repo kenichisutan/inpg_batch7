@@ -139,7 +139,7 @@ let gamemanager = {
         gamemanager.rngItem()
 
         let getActions = document.querySelector(".actions");
-        getActions.innerHTML = '<a classTypehref="#" class="btn-prefight" onclick="gamemanager.ascendFloor()">Next Floor</a>';
+        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="gamemanager.ascendFloor()">Next Floor</a>';
     },
     ascendFloor: function() {
         floorLevel++;

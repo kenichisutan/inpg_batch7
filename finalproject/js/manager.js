@@ -90,10 +90,10 @@ let gamemanager = {
             player = new Player(classType, 300, 0, 150, 25, 75, 100, "None");
         }
         if(classType === 'Elementalist') {
-            player = new Player(classType, 150, 200, 50, 100, 100, 50, "Flamethrower");
+            player = new Player(classType, 150, 200, 50, 100, 100, 65, "Flamethrower");
         }
         if(classType === 'Assassin') {
-            player = new Player(classType, 100, 50, 75, 200, 250, 150, "Crossbow");
+            player = new Player(classType, 100, 50, 75, 200, 250, 125, "Crossbow");
         }
         let getActions = document.querySelector(".actions");
         getActions.innerHTML = "<a href='#' class='btn-prefight' onclick='gamemanager.setGameStart()'>Confirm class</a>";
@@ -124,13 +124,15 @@ let gamemanager = {
         let getActions = document.querySelector(".actions");
         let getEnemy = document.querySelector(".enemy");
         
+        //Choosing what enemy to spawn
         this.rngEnemy()
         
+        //Changing the html display
         getHeader.innerHTML = '<p>Floor ' + floorLevel + '</p>';
         getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.initiateFight()">Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateSpecial()">Special Attack</a><a href="#" class="btn-prefight" onclick="PlayerMoves.initiateDefend()">Defend</a>';
         getEnemy.innerHTML = '<img src="assets/' + 
         enemy.enemyType + '.jpg" enemy="img-avatar"><div><h3>' +
-        enemy.enemyType + '</h3><p class="health-enemy">Health : ' + enemy.health + '</p><p>Magic : '
+        this.underscoreToSpace(enemy.enemyType) + '</h3><p class="health-enemy">Health : ' + enemy.health + '</p><p>Magic : '
         + enemy.magic + '</p><p>Strength : ' + enemy.strength + '</p><p>Agility : '
         + enemy.agility + '</p><p>Speed : ' + enemy.speed + '</p><p>Luck : '
         + enemy.luck + '</p>';

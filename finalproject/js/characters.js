@@ -60,9 +60,9 @@ let PlayerMoves = {
             let totalPlayerDamage = Math.floor(playerAttackValues[0] * playerAttackValues[1]);
             enemy.health = enemy.health - totalPlayerDamage
             alert("You hit " + playerAttackValues[0] + " damage " + playerAttackValues[1] +
-            " times to " + enemy.enemyType + ".")
+            " times to " + gamemanager.underscoreToSpace(enemy.enemyType) + ".")
             if(enemy.health <= 0) {
-                alert(enemy.enemyType + " has been killed!")
+                alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                 getPlayerHealth.innerHTML = "Health: " + player.health;
                 getEnemyHealth.innerHTML = "Health: 0";
                 gamemanager.ascendBtn();
@@ -72,7 +72,7 @@ let PlayerMoves = {
                 let enemyAttackValues = PlayerMoves.enemyAttack();
                 let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                 player.health = player.health - totalEnemyDamage;
-                alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
+                alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                 if(player.health <= 0) {
                     alert("The tower has overwhelmed you. Refresh the browser to start over.")
                     getPlayerHealth.innerHTML = "Health: 0";
@@ -86,7 +86,7 @@ let PlayerMoves = {
             let enemyAttackValues = PlayerMoves.enemyAttack();
             let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
             player.health = player.health - totalEnemyDamage;
-            alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
+            alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
             if(player.health <= 0) {
                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
                 getPlayerHealth.innerHTML = "Health: 0";
@@ -96,9 +96,9 @@ let PlayerMoves = {
                 let totalPlayerDamage = playerAttackValues[0] * playerAttackValues[1];
                 enemy.health = enemy.health - totalPlayerDamage
                 alert("You hit " + playerAttackValues[0] + " damage " + playerAttackValues[1] +
-                " times to " + enemy.enemyType + ".")
+                " times to " + gamemanager.underscoreToSpace(enemy.enemyType) + ".")
                 if(enemy.health <= 0) {
-                    alert(enemy.enemyType + " has been killed!")
+                    alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                     getPlayerHealth.innerHTML = "Health: " + player.health;
                     getEnemyHealth.innerHTML = "Health: 0";
                     gamemanager.ascendBtn();
@@ -143,10 +143,10 @@ let PlayerMoves = {
                         alert("You spent 100 magic to cast Flamethrower!")
                         player.magic = Number(player.magic) - Number(flamethrower.cost);
                         getPlayerMagic.innerHTML = "Magic: " + player.magic
-                        alert("You dealt " + flamethrower.damage + " damage to the " + enemy.enemyType + " and left him burning for " + flamethrower.time + " periods")
+                        alert("You dealt " + flamethrower.damage + " damage to the " + gamemanager.underscoreToSpace(enemy.enemyType) + " and left him burning for " + flamethrower.time + " periods")
                         enemy.health = enemy.health - flamethrower.damage
                         if(enemy.health <= 0) {                    
-                            alert(enemy.enemyType + " has been killed!")
+                            alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                             getPlayerHealth.innerHTML = "Health: " + player.health;
                             getEnemyHealth.innerHTML = "Health: 0";
                             gamemanager.ascendBtn();
@@ -154,10 +154,10 @@ let PlayerMoves = {
                         if(enemy.health > 0) {
                             getEnemyHealth.innerHTML = "Health: " + enemy.health;
                             for(let dottime = 0; dottime < Number(flamethrower.time); dottime++) {
-                                alert("The " + enemy.enemyType + " was burnt for " + flamethrower.dot + " damage")
+                                alert("The " + gamemanager.underscoreToSpace(enemy.enemyType) + " was burnt for " + flamethrower.dot + " damage")
                                 enemy.health = enemy.health - flamethrower.dot
                                 if(enemy.health <= 0) {
-                                    alert(enemy.enemyType + " has been killed!")
+                                    alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                                     getPlayerHealth.innerHTML = "Health: " + player.health;
                                     getEnemyHealth.innerHTML = "Health: 0";
                                     gamemanager.ascendBtn();
@@ -174,7 +174,7 @@ let PlayerMoves = {
                         let enemyAttackValues = PlayerMoves.enemyAttack();
                         let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                         player.health = player.health - totalEnemyDamage;
-                        alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
+                        alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                         if(player.health <= 0) {
                             alert("The tower has overwhelmed you. Refresh the browser to start over.")
                             getPlayerHealth.innerHTML = "Health: 0";
@@ -187,10 +187,10 @@ let PlayerMoves = {
                         alert("You spent 50 magic to cast Crossbow!")
                         player.magic = Number(player.magic) - Number(crossbow.cost)
                         getPlayerMagic.innerHTML = "Magic: " + player.magic
-                        alert("You dealt " + crossbow.damage + " amount of damage to the " + enemy.enemyType + "!")
+                        alert("You dealt " + crossbow.damage + " amount of damage to the " + gamemanager.underscoreToSpace(enemy.enemyType) + "!")
                         enemy.health = enemy.health - crossbow.damage
                         if(enemy.health <= 0) {
-                            alert(enemy.enemyType + " has been killed!")
+                            alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                             getPlayerHealth.innerHTML = "Health: " + player.health;
                             getEnemyHealth.innerHTML = "Health: 0";
                             gamemanager.ascendBtn();
@@ -200,7 +200,7 @@ let PlayerMoves = {
                             let enemyAttackValues = PlayerMoves.enemyAttack();
                             let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                             player.health = player.health - totalEnemyDamage;
-                            alert(enemy.enemyType + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
+                            alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
                             if(player.health <= 0) {
                                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
                                 getPlayerHealth.innerHTML = "Health: 0";
@@ -216,7 +216,7 @@ let PlayerMoves = {
                     let enemyAttackValues = PlayerMoves.enemyAttack();
                     let totalEnemyDamage = enemyAttackValues[0] * enemyAttackValues[1];
                     player.health = player.health - totalEnemyDamage;
-                    alert(enemy.enemyType + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
+                    alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                     if(player.health <= 0) {
                         alert("The tower has overwhelmed you. Refresh the browser to start over.")
                         getPlayerHealth.innerHTML = "Health: 0";
@@ -228,10 +228,10 @@ let PlayerMoves = {
                             alert("You spent 100 magic to cast Flamethrower!")
                             player.magic = Number(player.magic) - Number(flamethrower.cost)
                             getPlayerMagic.innerHTML = "Magic: " + player.magic
-                            alert("You dealt " + flamethrower.damage + " damage to the " + enemy.enemyType + " and left him burning for " + flamethrower.time + " periods")
+                            alert("You dealt " + flamethrower.damage + " damage to the " + gamemanager.underscoreToSpace(enemy.enemyType) + " and left him burning for " + flamethrower.time + " periods")
                             enemy.health = enemy.health - flamethrower.damage
                             if(enemy.health <= 0) {                    
-                                alert(enemy.enemyType + " has been killed!")
+                                alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                                 getPlayerHealth.innerHTML = "Health: " + player.health;
                                 getEnemyHealth.innerHTML = "Health: 0";
                                 gamemanager.ascendBtn();
@@ -240,10 +240,10 @@ let PlayerMoves = {
                             if(enemy.health > 0) {
                                 getEnemyHealth.innerHTML = "Health: " + enemy.health;
                                 for(let dottime = 0; dottime < Number(flamethrower.time); dottime++) {
-                                    alert("The " + enemy.enemyType + " was burnt for " + flamethrower.dot + " damage")
+                                    alert("The " + gamemanager.underscoreToSpace(enemy.enemyType) + " was burnt for " + flamethrower.dot + " damage")
                                     enemy.health = enemy.health - flamethrower.dot
                                     if(enemy.health <= 0) {
-                                        alert(enemy.enemyType + " has been killed!")
+                                        alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                                         getPlayerHealth.innerHTML = "Health: " + player.health;
                                         getEnemyHealth.innerHTML = "Health: 0";
                                         gamemanager.ascendBtn();
@@ -258,10 +258,10 @@ let PlayerMoves = {
                             alert("You spent 50 magic to cast Crossbow!")
                             player.magic = Number(player.magic) - Number(crossbow.cost)                 
                             getPlayerMagic.innerHTML = "Magic: " + player.magic
-                            alert("You dealt " + crossbow.damage + " amount of damage to the" + enemy.enemyType + "!")
+                            alert("You dealt " + crossbow.damage + " amount of damage to the" + gamemanager.underscoreToSpace(enemy.enemyType) + "!")
                             enemy.health = enemy.health - crossbow.damage
                             if(enemy.health <= 0) {
-                                alert(enemy.enemyType + " has been killed!")
+                                alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                                 getPlayerHealth.innerHTML = "Health: " + player.health;
                                 getEnemyHealth.innerHTML = "Health: 0";
                                 gamemanager.ascendBtn();
@@ -284,13 +284,13 @@ let PlayerMoves = {
             let parryDamage = enemyAttackValues[0] + Math.floor(Math.random() * 10) - Math.floor(Math.random() * enemyAttackValues[0])
             for(let parryAmount = 1; parryAmount <= enemyAttackValues[1]; parryAmount++) {
                 if(parryAmount = 1) {
-                    alert("You successfully parried the " + enemy.enemyType + " and reflected " + parryDamage + " damage!")
+                    alert("You successfully parried the " + gamemanager.underscoreToSpace(enemy.enemyType) + " and reflected " + parryDamage + " damage!")
                 } else {
-                    alert("You parried the " + enemy.enemyType + " again and reflected " + parryDamage + " damage!")
+                    alert("You parried the " + gamemanager.underscoreToSpace(enemy.enemyType) + " again and reflected " + parryDamage + " damage!")
                 }
                 enemy.health = enemy.health - parryDamage;
                 if(enemy.health <= 0) {
-                    alert(enemy.enemyType + " has been killed!")
+                    alert(gamemanager.underscoreToSpace(enemy.enemyType) + " has been killed!")
                     getPlayerHealth.innerHTML = "Health: " + player.health;
                     getEnemyHealth.innerHTML = "Health: 0";
                     gamemanager.ascendBtn();
@@ -305,9 +305,9 @@ let PlayerMoves = {
             }
             for(let failedattackAmount = 1; failedattackAmount <= enemyAttackValues[1]; failedattackAmount++) {
                 if(failedattackAmount = 1) {
-                    alert("You failed to parry the " + enemy.enemyType + " and received " + failedattackDamage + " damage!")
+                    alert("You failed to parry the " + gamemanager.underscoreToSpace(enemy.enemyType) + " and received " + failedattackDamage + " damage!")
                 } else {
-                    alert("You failed to parry the " + enemy.enemyType + " again and received " + failedattackDamage + " damage!")
+                    alert("You failed to parry the " + gamemanager.underscoreToSpace(enemy.enemyType) + " again and received " + failedattackDamage + " damage!")
                 }
                 player.health = player.health - failedattackDamage;
                 if(player.health <= 0) {

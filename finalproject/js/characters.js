@@ -75,6 +75,7 @@ let PlayerMoves = {
                 alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                 if(player.health <= 0) {
                     alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                    gamemanager.restartGame()
                     getPlayerHealth.innerHTML = "Health: 0";
                     getEnemyHealth.innerHTML = "Health: " + enemy.health;
                 } else {
@@ -89,6 +90,7 @@ let PlayerMoves = {
             alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
             if(player.health <= 0) {
                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                gamemanager.restartGame()
                 getPlayerHealth.innerHTML = "Health: 0";
                 getEnemyHealth.innerHTML = "Health: " + enemy.health;
             } else {
@@ -177,6 +179,7 @@ let PlayerMoves = {
                         alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                         if(player.health <= 0) {
                             alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                            gamemanager.restartGame()
                             getPlayerHealth.innerHTML = "Health: 0";
                             getEnemyHealth.innerHTML = "Health: " + enemy.health;
                         } else {
@@ -203,6 +206,7 @@ let PlayerMoves = {
                             alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + playerAttackValues[0] + " damage " + playerAttackValues[1] +" times.")
                             if(player.health <= 0) {
                                 alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                                gamemanager.restartGame()
                                 getPlayerHealth.innerHTML = "Health: 0";
                                 getEnemyHealth.innerHTML = "Health: " + enemy.health;
                             } else {
@@ -219,6 +223,7 @@ let PlayerMoves = {
                     alert(gamemanager.underscoreToSpace(enemy.enemyType) + " hit you with " + enemyAttackValues[0] + " damage " + enemyAttackValues[1] +" times.")
                     if(player.health <= 0) {
                         alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                        gamemanager.restartGame()
                         getPlayerHealth.innerHTML = "Health: 0";
                         getEnemyHealth.innerHTML = "Health: " + enemy.health;
                     } else {
@@ -312,6 +317,7 @@ let PlayerMoves = {
                 player.health = player.health - failedattackDamage;
                 if(player.health <= 0) {
                     alert("The tower has overwhelmed you. Refresh the browser to start over.")
+                    gamemanager.restartGame()
                     getPlayerHealth.innerHTML = "Health: 0";
                     getEnemyHealth.innerHTML = "Health: " + enemy.health;
                 } else {
@@ -326,6 +332,15 @@ let PlayerMoves = {
 let enemy;
 
 function Enemy(enemyType, health, magic, strength, agility, speed, luck) {
+    //Randomizing values slightly after floor 5
+    if(floorLevel > 5) {
+        health = health + Math.floor(Math.random() * floorLevel * 2);
+        magic = magic + Math.floor(Math.random() * floorLevel * 2);
+        strength = strength + Math.floor(Math.random() * floorLevel * 2);
+        agility = agility + Math.floor(Math.random() * floorLevel * 2);
+        speed = speed + Math.floor(Math.random() * floorLevel * 2);
+        luck = luck + Math.floor(Math.random() * floorLevel * 2);
+    }
     this.enemyType = enemyType;
     this.health = health;
     this.magic = magic;

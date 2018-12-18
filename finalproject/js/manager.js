@@ -85,6 +85,10 @@ let gamemanager = {
             alert("You received " + item.itemType + "!")
         }
     },
+    restartGame: function() {
+        let getActions = document.querySelector(".actions");
+        getActions.innerHTML = "<a href='#' class='btn-prefight' onclick='window.location.reload()'>Restart Game</a>";
+    },
     underscoreToSpace: function(text) {
         text = text.split("_");
         return text.join(" ")

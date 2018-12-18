@@ -85,6 +85,16 @@ let gamemanager = {
             alert("You received " + item.itemType + "!")
         }
     },
+    openHelp: function() {
+        let getHelp = document.querySelector(".help");
+        getHelp.innerHTML = "<p>Help: In this game you have 3 types of moves! Attack, use this to simply attack the enemy using your agility and strength stats. Special attack, these attacks have Special effects but cost magic to use." + 
+        " Defend, use this to have a chance at either parrying the enemy and reflecting damage or failing to do so but still blocking some damage. Good luck!" + 
+        "</p><p><button onclick='gamemanager.closeHelp()'> Close Help </button>"
+    },
+    closeHelp: function() {
+        let getHelp = document.querySelector(".help");
+        getHelp.innerHTML = "<button onclick='gamemanager.openHelp()'> Open Help </button>"
+    },
     restartGame: function() {
         let getActions = document.querySelector(".actions");
         getActions.innerHTML = "<a href='#' class='btn-prefight' onclick='window.location.reload()'>Restart Game</a>";

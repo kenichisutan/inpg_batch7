@@ -154,3 +154,17 @@ body {
     color: #d5c8af;
     line-height: 20px;
 }
+
+.help {
+    background-color: #4CAF50;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    padding: 15px 32px;
+    font-size: 15px;
+    border: 2px solid greenyellow;
+    color: black;
+    line-height: 30px;
+    text-decoration: none;
+    border-radius: 12px;
+}
